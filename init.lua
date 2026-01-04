@@ -52,10 +52,6 @@ vim.g.loaded_netrwPlugin = 1
 -- vim.opt.conceallevel = 2
 
 
--- quickly check diagnostics
-vim.keymap.set('n', '<leader>do', ':lua vim.diagnostic.open_float()<CR>')
-
-
 vim.api.nvim_create_user_command(
 	"WordCount",
 	function(opts)
@@ -94,6 +90,65 @@ vim.api.nvim_create_user_command(
 	}
 )
 
+local function show_diagnostics()
+	vim.diagnostic.open_float(nil, {
+		scope = "cursor",
+		focusable = false,
+		border = "rounded",
+		close_events = {
+			"CursorMoved",
+			"CursorMovedI",
+		},
+	})
+end
+
+vim.api.nvim_create_user_command(
+	"ShowDiagnostics",
+	show_diagnostics,
+	{
+		desc = "Show diagnostics in a float",
+	}
+)
+
+-- Snacks.scroll could take up to 200ms
+local animation_delay_ms = 200
+
+vim.keymap.set(
+	"n",
+	"]d",
+	function()
+		local diagnostic = vim.diagnostic.jump({
+			count = 1,
+		})
+		if diagnostic ~= nil then
+			vim.defer_fn(show_diagnostics, animation_delay_ms)
+		end
+	end,
+	{
+		noremap = true,
+		silent = true,
+		desc = "Jump to next diagnostic",
+	}
+)
+
+vim.keymap.set(
+	"n",
+	"[d",
+	function()
+		local diagnostic = vim.diagnostic.jump({
+			count = -1,
+		})
+		if diagnostic ~= nil then
+			vim.defer_fn(show_diagnostics, animation_delay_ms)
+		end
+	end,
+	{
+		noremap = true,
+		silent = true,
+		desc = "Jump to previous diagnostic",
+	}
+)
+
 -- Bootstrapping lazy
 -- https://github.com/folke/lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -113,14 +168,3 @@ require("lazy").setup({
 	-- Automatically loads: ~/.config/nvim/lua/plugins/*.lua
 	import = "plugins",
 })
-
--- open a terminal in a new tab
---vim.keymap.set('n', '<leader>tt', function()
---	vim.api.nvim_exec2(
---		':tab term\n' ..
---		':set nonumber\n' ..
---		':set norelativenumber\n' ..
---		':set nowrap\n' ..
---		':startinsert'
---	, {})
---end)
