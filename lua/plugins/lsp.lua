@@ -38,6 +38,7 @@ return {
 				"lua",
 				"markdown",
 				"markdown_inline",
+				"nix",
 				"printf",
 				"python",
 				"toml",
