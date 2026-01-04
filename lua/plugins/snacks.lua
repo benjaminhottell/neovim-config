@@ -61,7 +61,7 @@ return {
 			desc = "lua Snacks.terminal.open()"
 		},
 		{
-			"<leader>sr",
+			"<leader>se",
 			function()
 				Snacks.explorer.open()
 			end,

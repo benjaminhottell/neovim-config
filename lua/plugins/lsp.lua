@@ -156,12 +156,4 @@ return {
 		end
 	},
 
-	{
-		"mrcjkb/rustaceanvim",
-		ft = "rust",
-		init = function()
-			-- vim.g.rustaceanvim = {}
-		end
-	},
-
 }
