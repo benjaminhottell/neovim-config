@@ -1,5 +1,13 @@
 local function find_lldb()
-	local guess = vim.fn.exepath("codelldb")
+	local guess = vim.fn.exepath(
+		vim.fn.stdpath("data")
+		.. "/mason/packages/codelldb/extension/adapter/codelldb"
+	)
+	if guess ~= "" then
+		return guess
+	end
+
+	guess = vim.fn.exepath("codelldb")
 	if guess ~= "" then
 		return guess
 	end
