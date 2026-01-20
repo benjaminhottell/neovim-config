@@ -18,11 +18,19 @@ return {
 		},
 
 		config = function()
+			--- @diagnostic disable: missing-fields`
 			require("neotest").setup({
 				adapters = {
 					require("rustaceanvim.neotest"),
 					require("neotest-python"),
 				},
+				summary = {
+					-- I want to keep the summary pane stable
+					follow = false,
+					-- Adds a spinning / animation to running tests
+					-- I feel that the animation is too distracting
+					animated = false,
+				}
 			})
 		end,
 
