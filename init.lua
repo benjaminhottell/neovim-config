@@ -149,6 +149,16 @@ vim.keymap.set(
 	}
 )
 
+-- Use two spaces as indentation in Nix files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "nix",
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.expandtab = true
+	end
+})
+
 -- Bootstrapping lazy
 -- https://github.com/folke/lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
