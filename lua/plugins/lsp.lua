@@ -135,6 +135,10 @@ return {
 		ft = {
 			"lua",
 			"python",
+			"javascript",
+			"typescript",
+			"javascriptreact",
+			"typescriptreact",
 		},
 
 		config = function()
@@ -154,6 +158,9 @@ return {
 
 			add_lsp("lua_ls")
 			add_lsp("pyright")
+
+			add_lsp("vtsls")
+
 		end
 	},
 
