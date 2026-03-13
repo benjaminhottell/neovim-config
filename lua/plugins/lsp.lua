@@ -157,7 +157,18 @@ return {
 			end
 
 			add_lsp("lua_ls")
-			add_lsp("pyright")
+
+			add_lsp("pyright", {
+				cmd_env = {
+					VIRTUAL_ENV = os.getenv("VIRTUAL_ENV"),
+					PATH = os.getenv("PATH"),
+				},
+				settings = {
+					python = {
+						pythonPath = vim.fn.exepath("python3"),
+					},
+				},
+			})
 
 			add_lsp("vtsls")
 
