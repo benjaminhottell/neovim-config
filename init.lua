@@ -149,14 +149,34 @@ vim.keymap.set(
 	}
 )
 
+function indent_2spaces()
+	vim.opt_local.tabstop = 2
+	vim.opt_local.shiftwidth = 2
+	vim.opt_local.expandtab = true
+end
+
 -- Use two spaces as indentation in Nix files
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "nix",
-	callback = function()
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.expandtab = true
-	end
+	callback = indent_2spaces,
+})
+
+-- Use two spaces as indentation in .js, .ts, .jsx, .tsx files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "javascript",
+	callback = indent_2spaces,
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "typescript",
+	callback = indent_2spaces,
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "javascriptreact",
+	callback = indent_2spaces,
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "typescriptreact",
+	callback = indent_2spaces,
 })
 
 -- Bootstrapping lazy
