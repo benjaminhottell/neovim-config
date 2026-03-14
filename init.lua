@@ -179,6 +179,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = indent_2spaces,
 })
 
+-- Always show side column, even if it is empty
+-- I like it always there because having it pop in and out is annoying/distracting
+vim.o.signcolumn = "yes:1"
+
 -- Bootstrapping lazy
 -- https://github.com/folke/lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
