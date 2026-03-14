@@ -198,7 +198,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-	-- Automatically loads: ~/.config/nvim/lua/plugins/*.lua
-	import = "plugins",
+-- Automatically loads: ~/.config/nvim/lua/plugins/*.lua
+require("lazy").setup("plugins", {
+	change_detection = {
+		notify = false,
+	},
 })
