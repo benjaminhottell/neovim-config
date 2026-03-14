@@ -122,6 +122,7 @@ return {
 			"mason-org/mason-lspconfig.nvim",
 			{ "j-hui/fidget.nvim", opts = {} },
 			"saghen/blink.cmp",
+			"folke/lazydev.nvim",
 		},
 
 		cmd = {
