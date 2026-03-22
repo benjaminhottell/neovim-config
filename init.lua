@@ -155,6 +155,12 @@ local function indent_2spaces()
 	vim.opt_local.expandtab = true
 end
 
+local function indent_4spaces()
+	vim.opt_local.tabstop = 4
+	vim.opt_local.shiftwidth = 4
+	vim.opt_local.expandtab = true
+end
+
 -- Use two spaces as indentation in Nix files
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "nix",
@@ -177,6 +183,16 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "typescriptreact",
 	callback = indent_2spaces,
+})
+
+-- Use four spaces as indentation in Java files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "java",
+	callback = indent_4spaces,
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "groovy",
+	callback = indent_4spaces,
 })
 
 -- Always show side column, even if it is empty
