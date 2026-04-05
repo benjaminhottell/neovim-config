@@ -1,62 +1,6 @@
 return {
 
 	{
-		"nvim-treesitter/nvim-treesitter",
-		cmd = {
-			"TSBufDisable",
-			"TSBufEnable",
-			"TSDisable",
-			"TSEnable",
-			"TSUninstall",
-			"TSUpdate",
-			"TSInstall",
-		},
-		event = {
-			"VeryLazy",
-		},
-		build = ":TSUpdate",
-		--- @module "nvim-treesitter"
-		opts = {
-			highlight = {
-				enable = true,
-			},
-			indent = {
-				enable = true,
-			},
-			folds = {
-				enable = true,
-			},
-			ensure_installed = {
-				"bash",
-				"c",
-				"diff",
-				"html",
-				"javascript",
-				"jsdoc",
-				"json",
-				"jsonc",
-				"lua",
-				"markdown",
-				"markdown_inline",
-				"nix",
-				"printf",
-				"python",
-				"toml",
-				"tsx",
-				"typescript",
-				"vim",
-				"vimdoc",
-				"xml",
-				"yaml",
-			},
-		},
-		config = function(_, opts)
-			-- Must manually specify path to `setup`
-			require("nvim-treesitter.configs").setup(opts)
-		end,
-	},
-
-	{
 		"folke/lazydev.nvim",
 		ft = "lua",
 		cmd = "LazyDev",
